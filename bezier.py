@@ -37,7 +37,6 @@ f.write(header)
 
 path = ""
 
-prev_coords = None
 for idx in range(0, STEPS):
     coords = []
     for (i, a) in enumerate(ACTORS):
@@ -49,20 +48,8 @@ for idx in range(0, STEPS):
 
     for coord in coords[3:]:
         path += " T %d %d" % (coord[0], coord[1])
-    """
-    else:
-        path += " T %d %d" % (coords[0][0], coords[0][1])
-        #for coord in coords:
-        #    path += " T %d %d" % (coord[0], coord[1])
-
-        lines.append([coords[0], coords[1]])
-    """
-    prev_coords = coords
 
     f.write(path_template % path)
-
-#for line in lines:
-#    f.write('<line x1="%d" y1="%d" x2="%d" y2="%d" stroke="black" />' % (line[0][0], line[0][1], line[1][0], line[1][1]))
 
 f.write(footer)
 f.close()
