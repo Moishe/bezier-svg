@@ -1,20 +1,20 @@
 import math
 
-STEPS = 100
+STEPS = 128
 ACTORS = [
     {
-        'radius': 150,
+        'radius': 250,
         'freq': 1,
         'offset': 0
     },
     {
-        'radius': 100,
-        'freq': 1,
+        'radius': 230,
+        'freq': -3,
         'offset': math.pi / 8
     },
     {
-        'radius': 280,
-        'freq': 2,
+        'radius': 250,
+        'freq': 1,
         'offset': math.pi
     },
 ]
@@ -24,7 +24,7 @@ MM = 3.543307
 WIDTH = 210 * MM
 HEIGHT = 290 * MM
 
-header = '<svg width="%dmm" height="%dmm" xmlns="http://www.w3.org/2000/svg">\n' % (WIDTH / MM, HEIGHT / MM) + '<rect width="100%" height="100%" fill="white"/>\n'
+header = '<svg width="%dmm" height="%dmm" xmlns="http://www.w3.org/2000/svg">\n' % (WIDTH / MM, HEIGHT / MM)
 footer = '</svg>\n'
 
 path_template = '<path d="%s" stroke="black" fill-opacity="0" stroke-width="0.1"/>\n'
@@ -41,7 +41,7 @@ prev_coords = None
 for idx in range(0, STEPS):
     coords = []
     for (i, a) in enumerate(ACTORS):
-        t = (idx / STEPS + (i / STEPS) / len(ACTORS) + a['offset']) * math.pi * 2 * a['freq']
+        t = (idx / STEPS + (i / STEPS) / len(ACTORS) + a['offset']) * math.pi * 2 * a['freq'] + math.pi * 5/12 + math.pi / 256
         coords.append([math.cos(t) * a['radius'] + (WIDTH / 2), math.sin(t) * a['radius'] + (HEIGHT / 2)])
 
     path = "M %d %d" % (coords[0][0], coords[0][1])
